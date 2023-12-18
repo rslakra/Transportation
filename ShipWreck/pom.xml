@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!-- Parent -->
+    <!-- parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -11,78 +11,88 @@
         <!-- lookup parent from repository -->
         <relativePath/>
     </parent>
-    <!-- aop-services -->
+    <!-- services -->
     <groupId>com.rslakra.transportation</groupId>
     <artifactId>ShipWreck</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <description>The ${project.artifactId} Application</description>
 
-    <!-- Properties -->
+    <!-- properties -->
     <properties>
+        <!-- revision -->
+        <revision>0.0.0</revision>
+
         <!-- sourceEncoding & outputEncoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- java version -->
         <java.version>11</java.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <!-- maven plugins -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-release-plugin.version>3.0.0</maven-release-plugin.version>
 
         <!-- checkstyle -->
         <code-styles.dir>https://raw.githubusercontent.com/rslakra/code-styles/master</code-styles.dir>
         <checkstyle.threshold>0</checkstyle.threshold>
 
-        <appsuite-framework-core.version>0.0.23</appsuite-framework-core.version>
-        <appsuite-framework-spring.version>0.0.32</appsuite-framework-spring.version>
-        <common-yatra-service.version>0.0.222</common-yatra-service.version>
+        <!-- appsuite-core -->
+        <appsuite-core.version>0.0.4</appsuite-core.version>
+
+        <!-- appsuite-spring -->
+        <appsuite-spring.version>0.0.4</appsuite-spring.version>
 
         <!-- lombok -->
-        <lombok.version>1.18.26</lombok.version>
+        <lombok.version>1.18.28</lombok.version>
+
+        <!-- swagger -->
+        <swagger.skip>false</swagger.skip>
+
+        <!-- csv parser version -->
+        <commons-csv.version>1.9.0</commons-csv.version>
+        <opencsv.version>5.7.0</opencsv.version>
+        <!-- excel parser version -->
+        <poi.version>5.2.3</poi.version>
+        <poi-ooxml.version>5.2.3</poi-ooxml.version>
 
         <!-- liquibase -->
         <liquibase.version>4.19.0</liquibase.version>
         <flyway-core.version>9.10.1</flyway-core.version>
 
-        <!-- swagger -->
-        <swagger.skip>false</swagger.skip>
-
-        <commons-csv.version>1.9.0</commons-csv.version>
-        <opencsv.version>5.7.0</opencsv.version>
-        <poi.version>5.2.3</poi.version>
-        <poi-ooxml.version>5.2.3</poi-ooxml.version>
+        <model.mapper.version>2.3.0</model.mapper.version>
+        <hibernate.types.version>2.10.1</hibernate.types.version>
+        <json.version>20200518</json.version>
+        <javx.xml.bind.version>2.3.0</javx.xml.bind.version>
+        <geodesy.version>1.1.3</geodesy.version>
+        <mockito.all.version>2.0.2-beta</mockito.all.version>
+        <junit.version>5.7.0</junit.version>
 
         <!-- junit-jupiter-params -->
         <junit-jupiter-params.version>5.9.2</junit-jupiter-params.version>
 
-        <model.mapper.version>2.3.0</model.mapper.version>
-        <hibernate.types.version>2.10.1</hibernate.types.version>
-        <json.version>20231013</json.version>
-        <javx.xml.bind.version>2.3.0</javx.xml.bind.version>
-        <mockito.all.version>2.0.2-beta</mockito.all.version>
-        <junit.version>5.7.0</junit.version>
-        <geodesy.version>1.1.3</geodesy.version>
     </properties>
 
-    <!-- Dependencies -->
+    <!-- dependencies -->
     <dependencies>
 
-        <!-- appsuite-framework-modules -->
+        <!-- appsuite-core -->
         <dependency>
-            <groupId>com.devamatre.framework</groupId>
-            <artifactId>appsuite-framework-core</artifactId>
-            <version>${appsuite-framework-core.version}</version>
+            <groupId>com.devamatre.appsuite</groupId>
+            <artifactId>appsuite-core</artifactId>
+            <version>${appsuite-core.version}</version>
         </dependency>
 
+        <!-- appsuite-spring -->
         <dependency>
-            <groupId>com.devamatre.framework</groupId>
-            <artifactId>appsuite-framework-spring</artifactId>
-            <version>${appsuite-framework-spring.version}</version>
+            <groupId>com.devamatre.appsuite</groupId>
+            <artifactId>appsuite-spring</artifactId>
+            <version>${appsuite-spring.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
@@ -109,17 +119,17 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
-<!--        <dependency>-->
-<!--            <groupId>org.liquibase</groupId>-->
-<!--            <artifactId>liquibase-core</artifactId>-->
-<!--            <version>${liquibase.version}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.liquibase</groupId>-->
+        <!--            <artifactId>liquibase-core</artifactId>-->
+        <!--            <version>${liquibase.version}</version>-->
+        <!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-<!--            <version>${flyway-core.version}</version>-->
+            <!--            <version>${flyway-core.version}</version>-->
         </dependency>
 
         <!-- Databases -->
@@ -175,17 +185,17 @@
             <version>${model.mapper.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>javax.xml.bind</groupId>-->
-<!--            <artifactId>jaxb-api</artifactId>-->
-<!--            <version>${javx.xml.bind.version}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>javax.xml.bind</groupId>-->
+        <!--            <artifactId>jaxb-api</artifactId>-->
+        <!--            <version>${javx.xml.bind.version}</version>-->
+        <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>org.gavaghan</groupId>-->
-<!--            <artifactId>geodesy</artifactId>-->
-<!--            <version>${geodesy.version}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.gavaghan</groupId>-->
+        <!--            <artifactId>geodesy</artifactId>-->
+        <!--            <version>${geodesy.version}</version>-->
+        <!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/io.hypersistence/hypersistence-utils-hibernate-55 -->
         <dependency>
@@ -230,7 +240,7 @@
 
     </dependencies>
 
-    <!-- Build -->
+    <!-- build -->
     <build>
         <!-- finalName  -->
         <finalName>${project.artifactId}</finalName>

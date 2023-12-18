@@ -13,17 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.rslakra.shipwreck.repository;
+package com.rslakra.shipwreck;
 
-import com.devamatre.appsuite.spring.persistence.repository.BaseRepository;
-import com.rslakra.shipwreck.model.ShipWreck;
-import org.springframework.stereotype.Repository;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author Rohtash Singh Lakra
- * @version 1.0.0
+ * The Main Application.
  */
-@Repository
-public interface ShipWreckRepository extends BaseRepository<ShipWreck, Long> {
+@SpringBootApplication
+public class App {
 
+	/**
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		SpringApplication.run(App.class, args);
+	}
 }

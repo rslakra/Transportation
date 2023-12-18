@@ -1,6 +1,6 @@
 package com.rslakra.shipwreck.filter;
 
-import com.devamatre.framework.spring.filter.AbstractFilterImpl;
+import com.devamatre.appsuite.spring.filter.AbstractFilterImpl;
 import com.rslakra.shipwreck.model.ShipWreck;
 import lombok.Getter;
 import lombok.Setter;
